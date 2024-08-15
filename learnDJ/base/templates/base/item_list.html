@@ -5,16 +5,29 @@
 {%  block content %}
         <div>
             <p>{{ tdl }}</p>
-            <table>
-                <th>NAME</th><th>Description</th><th>Date</th>
-                {% for l in items %}
+            {% if error_message %}
+            <div style="background-color: rgb(236, 121, 80);"><strong>{{ error_message }}</strong></div>
+            {% endif %}
+            <form method="post" action="{% url 'base:status' tdl.id %}">
+                {% csrf_token %}
+                <table>
+                    <th>NAME</th><th>Description</th><th>Date</th><th>Completed</th>
+                {% for l in tdl.item_set.all %}
                 <tr>
                     <td>{{ l.name }}</td>
                     <td>{{ l.description }}</td>
                     <td>{{ l.date }}</td>
+                    <td><input type="checkbox" id="item{{ forloop.counter }}" name="item" value="{{ l.id }}">
+                        <label for="item{{ forloop.counter }}"> Satus</label>
+                    {% if l.completed %}
+                     <span style="color: greenyellow;"><i>Done</i></span>
+                    {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
-            </table>
+                </table>
+                <input type="submit" value="Complete"/>
+            </form>
             
         </div>
         

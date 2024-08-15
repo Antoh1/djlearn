@@ -9,7 +9,7 @@
         <th>TODO LISTS</th>
     {% for l in lnk %}
     <tr>
-        <td><a href="/{{ l.id }}">{{ l.title }}</a></td>
+        <td><a href="{% url 'base:index' l.pk %}">{{ l.title }}</a></td>
     </tr>
     {% endfor %}
     </table>
