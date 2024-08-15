@@ -3,6 +3,20 @@
 {% block title %} Todo Lists {% endblock %}
 
 {%  block content %}
-        <p>{{ tdl }}</p>
-        <p>{{ iname }}</p>
+        <div>
+            <p>{{ tdl }}</p>
+            <table>
+                <th>NAME</th><th>Description</th><th>Date</th>
+                {% for l in items %}
+                <tr>
+                    <td>{{ l.name }}</td>
+                    <td>{{ l.description }}</td>
+                    <td>{{ l.date }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            
+        </div>
+        
+        <!-- <p>{{ iname }}</p> -->
 {% endblock %}
