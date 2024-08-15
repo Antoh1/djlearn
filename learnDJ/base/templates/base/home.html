@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{%  block content %}
+<H1>Home Page</H1>
+<br>
+    {% for l in lnk %}
+    <a href="/{{ l.id }}">{{ l.title }}</a> </br>
+    {% endfor %}
+</div>
+{% endblock %}
