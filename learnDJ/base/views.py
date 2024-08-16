@@ -16,6 +16,9 @@ def Home(request):
     tl = TodoList.objects.all()
     return render(request, 'base/home.html',{"lnk": tl})
 
+def simp(request):
+    return render(request, 'base/index.html')
+
 
 def Status(request, list_id):
     tdl = get_object_or_404(TodoList, pk=list_id)

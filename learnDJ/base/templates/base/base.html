@@ -1,7 +1,15 @@
 <!DOCTYPE html>
+
+
+{% load static %}
+
 <html>
     <head>
         <title>{% block title %} DJ learning {% endblock %}</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="task managers, website keywords" />
+        <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}" />
         <style>
             table, th, td {
               border: 1px solid blueviolet;
@@ -12,7 +20,42 @@
             </style>
     </head>
     <body>
+      <div id="main">
+        <div id="header">
+          <div id="logo">
+            <div id="logo_text">
+              <!-- class="logo_colour", allows you to change the colour of the text -->
+              <h1><a href="{% url 'base:sim' %}">Ropetech<span class="logo_colour">Tasks Board</span></a></h1>
+              <h2>Simple. Contemporary. Task Manager.</h2>
+            </div>
+            <div id="contact_details">
+              <p>tel: 254710 509 204</p>
+            </div>
+          </div>
+          <div id="menubar">
+            <ul id="menu">
+              <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+              <li class="selected"><a href="{% url 'base:home' %}">Home</a></li>
+              <li><a href="{% url 'base:home' %}">All Tasks</a></li>
+              <li><a href="{% url 'base:home' %}">Comments & Reviews</a></li>
+              <li><a href="{% url 'base:home' %}">Accounts</a></li>
+              <li><form method="post" action="#" id="search_form">
+                {% csrf_token %}
+                <p>
+                  <input class="search" type="text" name="search_field" placeholder="Search Site....." />
+                  <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="{% static 'base/search.png' %}" alt="Search" title="Search" />
+                </p>
+              </form></li>
+            </ul>
+          </div>
+        </div>
+        <div id="site_content">
         {%  block content %}
         {% endblock %}
+        </div>
+        <div id="footer">
+          Copyright &copy; Ropetech | <a href="#">Tasks</a> | <a href="#">Accounts</a> | <a href="#">Authors</a>
+        </div>
+      </div>
     </body>
 </html> 
